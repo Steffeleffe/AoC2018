@@ -56,3 +56,14 @@ Played around with data classes. Adding properties using `get()` is pretty smart
 was changed to be size of list instead of Int variable. No changes needed in caller.
 
 Got way too late, so some methods could definitely be improved :).
+
+
+Day 4: Repose Record
+--------------------
+
+<https://adventofcode.com/2018/day/4>
+
+Probably should not be doing these challenges if too tired :). It definitely caused lack of good method names. 
+
+Green tests on the example date confused me when it then failed on the actual input. Took some time to figure out where
+the bug was.
