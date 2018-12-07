@@ -12,7 +12,7 @@ class SleepTracker {
                     val regex = """Guard #(\d*) begins shift""".toRegex()
                     val matchResult = regex.find(logEntry.message)
                     val (guard) = matchResult!!.destructured
-                    val toLocalDate = logEntry.date.plusHours(0).toLocalDate() // plus hours to more 23:xx to next day
+                    val toLocalDate = logEntry.date.plusHours(2).toLocalDate() // plus hours to move 23:xx to next day
                     currentGuardShift = GuardShift(toLocalDate, guard.toInt())
                     guardShifts.add(currentGuardShift)
 
