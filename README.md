@@ -67,3 +67,13 @@ Probably should not be doing these challenges if too tired :). It definitely cau
 
 Green tests on the example date confused me when it then failed on the actual input. Took some time to figure out where
 the bug was.
+
+Day 5: Alchemical Reduction
+---------------------------
+
+<https://adventofcode.com/2018/day/5>
+
+Very easy one today. Reduce by using stack, and a single pass.
+
+Nothing more to add, really :).
+
