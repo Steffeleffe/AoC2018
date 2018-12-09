@@ -77,3 +77,13 @@ Very easy one today. Reduce by using stack, and a single pass.
 
 Nothing more to add, really :).
 
+
+Day 6: Chronal Coordinates
+--------------------------
+
+<https://adventofcode.com/2018/day/6>
+
+Again a bit too tired, so naming a bit lacking. Puzzle itself was fairly simple.
+
+Wondering if I should have combined all days into the same Gradle project. There's a bit of overhead of creating new
+project per day. That would perhaps be more in the spirit of Kotlin, of code being concise and pragmatic.
