@@ -1,7 +1,6 @@
 import java.io.File
 
 class Day07 {
-
     fun part1Answer(): String {
         val directedGraph = createDirectedGraphFromInput()
         val stepExecuteOrder: MutableList<Char> = mutableListOf()
@@ -53,51 +52,56 @@ class Day07 {
         return secondCount
     }
 
-}
+    data class EdgeInput(val from: Char, val to: Char)
 
-class DirectedGraph(inputEdges: MutableSet<EdgeInput>, baseDuration: Int = 0) {
-    val nodes: MutableSet<Node> = mutableSetOf()
-    private val edges: MutableSet<Edge> = mutableSetOf()
+    data class Worker(val id: Int, var workingOn: Node? = null)
 
-    init {
-        val nodesMap: MutableMap<Char, Node> = mutableMapOf()
-        for (inputEdge in inputEdges) {
-            val fromNode = nodesMap.getOrPut(inputEdge.from) { Node(inputEdge.from, baseDuration) }
-            val toNode = nodesMap.getOrPut(inputEdge.to) { Node(inputEdge.to, baseDuration) }
-            edges.add(Edge(fromNode, toNode))
+    class Node(val id: Char, baseDuration: Int = 0) {
+        val cost = baseDuration + (id - 'A' + 1)
+        var remainingWork: Int = cost
+        val isWorkComplete get() : Boolean = remainingWork == 0
+        fun registerWork(seconds: Int = 1) {
+            remainingWork -= seconds
         }
-        nodes.addAll(nodesMap.values)
+
+        fun markAsComplete() {
+            remainingWork = 0
+        }
     }
 
-    fun isNodeReadyForWork(node: Node) = edges.filter { it.to == node }
-            .map { it.from }
-            .all { it.isWorkComplete }
+    class DirectedGraph(inputEdges: MutableSet<EdgeInput>, baseDuration: Int = 0) {
+        val nodes: MutableSet<Node> = mutableSetOf()
+        private val edges: MutableSet<Edge> = mutableSetOf()
 
-    fun getNextNodeReadyForWork() = getNodesReadyForWork()[0]
+        init {
+            val nodesMap: MutableMap<Char, Node> = mutableMapOf()
+            for (inputEdge in inputEdges) {
+                val fromNode = nodesMap.getOrPut(inputEdge.from) { Node(inputEdge.from, baseDuration) }
+                val toNode = nodesMap.getOrPut(inputEdge.to) { Node(inputEdge.to, baseDuration) }
+                edges.add(Edge(fromNode, toNode))
+            }
+            nodes.addAll(nodesMap.values)
+        }
 
-    fun getNodesReadyForWork() =
-            nodes.sortedBy { it.id }
-                    .filter { isNodeReadyForWork(it) && !it.isWorkComplete }
+        fun isNodeReadyForWork(node: Node) = edges.filter { it.to == node }
+                .map { it.from }
+                .all { it.isWorkComplete }
 
-    fun hasMoreWork() = getNodesReadyForWork().isNotEmpty()
+        fun getNextNodeReadyForWork() = getNodesReadyForWork()[0]
+
+        fun getNodesReadyForWork() =
+                nodes.sortedBy { it.id }
+                        .filter { isNodeReadyForWork(it) && !it.isWorkComplete }
+
+        fun hasMoreWork() = getNodesReadyForWork().isNotEmpty()
+
+
+        data class Edge(val from: Node, val to: Node)
+
+
+    }
+
 
 }
 
-data class EdgeInput(val from: Char, val to: Char)
 
-data class Edge(val from: Node, val to: Node)
-
-class Node(val id: Char, baseDuration: Int = 0) {
-    val cost = baseDuration + (id - 'A' + 1)
-    var remainingWork: Int = cost
-    val isWorkComplete get() : Boolean = remainingWork == 0
-    fun registerWork(seconds: Int = 1) {
-        remainingWork -= seconds
-    }
-
-    fun markAsComplete() {
-        remainingWork = 0
-    }
-}
-
-data class Worker(val id: Int, var workingOn: Node? = null)
