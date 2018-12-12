@@ -87,3 +87,17 @@ Again a bit too tired, so naming a bit lacking. Puzzle itself was fairly simple.
 
 Wondering if I should have combined all days into the same Gradle project. There's a bit of overhead of creating new
 project per day. That would perhaps be more in the spirit of Kotlin, of code being concise and pragmatic.
+
+Day 7: The Sum of Its Parts
+---------------------------
+
+<https://adventofcode.com/2018/day/7>
+
+Part 2 was less trouble than expected, but required the `DirectedGraph` class to be changed. Moving logic into the graph
+class also made the part1 function less complex. I'm sure Uncle Bob would have something to say about this :).
+
+A few annoyances, I should investigate further:
+* In IntelliJ, the "Create test" shortcut does not seem to support Kotlin.
+* In IntelliJ, running the unit tests in continuous mode don't work that well.
+* How should you create tests of private functions in classes?
+ 

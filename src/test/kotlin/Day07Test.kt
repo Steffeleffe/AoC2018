@@ -16,42 +16,57 @@ class Day07Test {
 
     @Test
     fun testParseStepDependencyString() {
-        assertThat(Day07().parseStepDependencyString("Step A must be finished before step B can begin."), equalTo(Edge('A', 'B')))
+        assertThat(Day07().parseStepDependencyString("Step A must be finished before step B can begin."), equalTo(EdgeInput('A', 'B')))
     }
 
     @Test
     fun testNodesInGraph() {
-        val input = mutableSetOf(Edge('A', 'D'), Edge('B', 'E'), Edge('D', 'E'))
-        assertThat(DirectedGraph(input).nodes, Matchers.containsInAnyOrder('A', 'B', 'D', 'E'))
+        val input = mutableSetOf(EdgeInput('A', 'D'), EdgeInput('B', 'E'), EdgeInput('D', 'E'))
+        assertThat(DirectedGraph(input).nodes.map { it.id }, Matchers.containsInAnyOrder('A', 'B', 'D', 'E'))
     }
 
     @Test
-    fun testCountIncomingEdges() {
-        val input = mutableSetOf(Edge('A', 'D'), Edge('B', 'E'), Edge('D', 'E'))
-        assertThat(DirectedGraph(input).countIncomingEdges('A'), equalTo(0))
-        assertThat(DirectedGraph(input).countIncomingEdges('B'), equalTo(0))
-        assertThat(DirectedGraph(input).countIncomingEdges('D'), equalTo(1))
-        assertThat(DirectedGraph(input).countIncomingEdges('E'), equalTo(2))
-    }
-
-    @Test
-    fun testRemoveNode() {
-        val input = mutableSetOf(Edge('A', 'D'), Edge('B', 'E'), Edge('D', 'E'))
+    fun testIsNodeReadyForWork() {
+        val input = mutableSetOf(EdgeInput('A', 'D'), EdgeInput('B', 'E'), EdgeInput('D', 'E'))
         val directedGraph = DirectedGraph(input)
-        directedGraph.removeNode('A')
-        assertThat(directedGraph.nodes, Matchers.containsInAnyOrder('B', 'D', 'E'))
-        assertThat(directedGraph.edges, Matchers.containsInAnyOrder(Edge('B', 'E'), Edge('D', 'E')))
+        val nodesMap = directedGraph.nodes.map { it.id to it }.toMap()
+        assertThat(directedGraph.isNodeReadyForWork(nodesMap['A']!!), equalTo(true))
+        assertThat(directedGraph.isNodeReadyForWork(nodesMap['B']!!), equalTo(true))
+        assertThat(directedGraph.isNodeReadyForWork(nodesMap['D']!!), equalTo(false))
+        assertThat(directedGraph.isNodeReadyForWork(nodesMap['E']!!), equalTo(false))
     }
 
     @Test
-    fun testAllButLastNode() {
-        val input = mutableSetOf(Edge('A', 'D'), Edge('B', 'E'), Edge('D', 'E'))
+    fun testGetNextNodeReadyForWork() {
+        val input = mutableSetOf(EdgeInput('A', 'D'), EdgeInput('B', 'E'), EdgeInput('D', 'E'))
         val directedGraph = DirectedGraph(input)
-        directedGraph.removeNode('A')
-        directedGraph.removeNode('B')
-        directedGraph.removeNode('D')
-        assertThat(directedGraph.nodes, Matchers.containsInAnyOrder('E'))
-        assertThat(directedGraph.edges, Matchers.empty())
+        val nodesMap = directedGraph.nodes.map { it.id to it }.toMap()
+        assertThat(directedGraph.getNextNodeReadyForWork().id, equalTo('A'))
+        nodesMap.get('A')!!.markAsComplete()
+        assertThat(directedGraph.getNextNodeReadyForWork().id, equalTo('B'))
+        nodesMap.get('B')!!.markAsComplete()
+        assertThat(directedGraph.getNextNodeReadyForWork().id, equalTo('D'))
+        nodesMap.get('D')!!.markAsComplete()
+        assertThat(directedGraph.getNextNodeReadyForWork().id, equalTo('E'))
+    }
+
+    @Test
+    fun testNodeCost() {
+        val node = Node('Z', 10)
+        assertThat(node.cost, equalTo(36))
+        assertThat(node.remainingWork, equalTo(36))
+        assertThat(node.isWorkComplete, equalTo(false))
+        node.registerWork()
+        assertThat(node.remainingWork, equalTo(35))
+        node.registerWork(35)
+        assertThat(node.remainingWork, equalTo(0))
+        assertThat(node.isWorkComplete, equalTo(true))
+    }
+
+    @Test
+    fun testNodeWork() {
+        val node = Node('Z', 10)
+        assertThat(node.cost, equalTo(36))
     }
 
 }
