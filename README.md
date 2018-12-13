@@ -88,6 +88,7 @@ Again a bit too tired, so naming a bit lacking. Puzzle itself was fairly simple.
 Wondering if I should have combined all days into the same Gradle project. There's a bit of overhead of creating new
 project per day. That would perhaps be more in the spirit of Kotlin, of code being concise and pragmatic.
 
+
 Day 7: The Sum of Its Parts
 ---------------------------
 
@@ -101,3 +102,14 @@ A few annoyances, I should investigate further:
 * In IntelliJ, running the unit tests in continuous mode don't work that well.
 * How should you create tests of private functions in classes?
  
+ 
+ Day 8: Memory Maneuver
+ ----------------------
+ 
+ <https://adventofcode.com/2018/day/8>
+ 
+ Relatively simple recursive function. I had some trouble figuring out how to detemine the lenght of each child node, in
+ order to parse den one at a time. Finally figured to pass a `Iterator` over the input integers, and then no problem.
+ 
+ Kotlin have some really convenient functions like `List.getOrNull`, `List.sum` and `List.sumBy`. These makes it easy
+ to do what, where in Java it would probably require a couple of extra lines each time. 
