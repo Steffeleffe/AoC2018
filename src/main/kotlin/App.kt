@@ -6,6 +6,10 @@ fun main(args: Array<String>) {
     println("Day08")
     println("Part1: ${Day08().part1Answer()}")
     println("Part2: ${Day08().part2Answer()}")
+    println()
+    println("Day09")
+    println("Part1: ${Day09().solve(410, 72059)}")
+    println("Part2: ${Day09().solve(410, 7205900)}")
 
 }
 

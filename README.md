@@ -112,4 +112,18 @@ A few annoyances, I should investigate further:
  order to parse den one at a time. Finally figured to pass a `Iterator` over the input integers, and then no problem.
  
  Kotlin have some really convenient functions like `List.getOrNull`, `List.sum` and `List.sumBy`. These makes it easy
- to do what, where in Java it would probably require a couple of extra lines each time. 
+ to do what, where in Java it would probably require a couple of extra lines each time.
+ 
+ 
+ Day 9: Marble Mania
+ -------------------
+ 
+ <https://adventofcode.com/2018/day/9>
+ 
+ First version was fairly straight forward with a `mutableList()` (an ArrayList). This worked okay for part 1, but never
+ finished in part 2.
+ 
+ Changing it for a LinkedList didn't do much, as the the time complexity for removing middle element (eventhough you
+ have the index), is still a O(n) operation. Removing/adding head or tail is O(1), so went with rotating the "ring" on
+ every insert.
+  
