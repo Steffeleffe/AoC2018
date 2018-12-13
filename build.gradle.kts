@@ -17,9 +17,16 @@ repositories {
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 
-    testImplementation("org.jetbrains.kotlin:kotlin-test")
-    testImplementation("org.jetbrains.kotlin:kotlin-test-junit")
-    testImplementation("org.hamcrest:hamcrest-all:1.3")
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.1.1")
+    testImplementation("org.assertj:assertj-core:3.11.1")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.1.1")
+}
+
+tasks {
+    // Use the built-in JUnit support of Gradle.
+    "test"(Test::class) {
+        useJUnitPlatform()
+    }
 }
 
 application {
