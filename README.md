@@ -123,7 +123,7 @@ Day 9: Marble Mania
 First version was fairly straight forward with a `mutableList()` (an ArrayList). This worked okay for part 1, but never
 finished in part 2.
 
-Changing it for a LinkedList didn't do much, as the the time complexity for removing middle element (eventhough you
+Changing it for a LinkedList did not help much, as the time complexity for removing middle element (even though you
 have the index), is still a O(n) operation. Removing/adding head or tail is O(1), so went with rotating the "ring" on
 so that every insert and remove happens in the head or tail of the list.
  
