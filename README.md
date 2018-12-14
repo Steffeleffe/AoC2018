@@ -103,27 +103,45 @@ A few annoyances, I should investigate further:
 * How should you create tests of private functions in classes?
  
  
- Day 8: Memory Maneuver
- ----------------------
+Day 8: Memory Maneuver
+----------------------
  
- <https://adventofcode.com/2018/day/8>
+<https://adventofcode.com/2018/day/8>
+
+Relatively simple recursive function. I had some trouble figuring out how to detemine the lenght of each child node, in
+order to parse den one at a time. Finally figured to pass a `Iterator` over the input integers, and then no problem.
+
+Kotlin have some really convenient functions like `List.getOrNull`, `List.sum` and `List.sumBy`. These makes it easy
+to do what, where in Java it would probably require a couple of extra lines each time.
+
+
+Day 9: Marble Mania
+-------------------
+
+<https://adventofcode.com/2018/day/9>
+
+First version was fairly straight forward with a `mutableList()` (an ArrayList). This worked okay for part 1, but never
+finished in part 2.
+
+Changing it for a LinkedList didn't do much, as the the time complexity for removing middle element (eventhough you
+have the index), is still a O(n) operation. Removing/adding head or tail is O(1), so went with rotating the "ring" on
+so that every insert and remove happens in the head or tail of the list.
  
- Relatively simple recursive function. I had some trouble figuring out how to detemine the lenght of each child node, in
- order to parse den one at a time. Finally figured to pass a `Iterator` over the input integers, and then no problem.
- 
- Kotlin have some really convenient functions like `List.getOrNull`, `List.sum` and `List.sumBy`. These makes it easy
- to do what, where in Java it would probably require a couple of extra lines each time.
- 
- 
- Day 9: Marble Mania
- -------------------
- 
- <https://adventofcode.com/2018/day/9>
- 
- First version was fairly straight forward with a `mutableList()` (an ArrayList). This worked okay for part 1, but never
- finished in part 2.
- 
- Changing it for a LinkedList didn't do much, as the the time complexity for removing middle element (eventhough you
- have the index), is still a O(n) operation. Removing/adding head or tail is O(1), so went with rotating the "ring" on
- every insert.
-  
+
+Day 10: The Stars Align
+-----------------------
+
+<https://adventofcode.com/2018/day/10>
+
+Very easy. I made assumption that the time where the area defined the light positions is the most compact, is also the
+time where the message is written in the sky. It turned out to be the case :). 
+
+Created multiple `data class` as this is the idiomatic way, and best open for extension. This time, however, extending 
+the data structures was not needed.
+
+Possible improvements:
+* On the input the message showed itself after 10000 seconds, but could have been much longer. Each step requires some 
+  computation, which could be replaced by some simple math to calculate the intersection of the lights given their start
+  position and their velocity. 
+* Function `findSmallestSky` is not too pretty; could probably be refactored up.
+
