@@ -29,7 +29,7 @@ class Day09 {
             return copy.toList().reversed()
         }
 
-        private val marblesDeque = LinkedList<Int>().also { it.add(0) }
+        private val marblesDeque: Deque<Int> = LinkedList<Int>().also { it.add(0) }
 
         fun handleMarble(marbleId: Int): Int =
                 if (marbleId % 23 == 0) {
@@ -51,7 +51,7 @@ class Day09 {
             return score
         }
 
-        private fun LinkedList<Int>.rotate(n: Int): Unit =
+        private fun Deque<Int>.rotate(n: Int): Unit =
                 when {
                     n < 0 -> repeat(-n) {
                         addLast(removeFirst())
