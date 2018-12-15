@@ -161,4 +161,5 @@ I did not actually solve it completely, as time is still too big a factor. My ha
 size to 20 in the part 2 case (and 3 in part 1). This was enough to find the correct solution. :-/
 
 Improvement:
-* Fix the divide-and-conquer algorithm to be able to calculate total power for all 300 square sizes.
+* Fix the divide-and-conquer algorithm to be able to calculate total power for all 300 square sizes. See "Summed-area
+table" <https://en.wikipedia.org/wiki/Summed-area_table>.
