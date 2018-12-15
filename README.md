@@ -108,7 +108,7 @@ Day 8: Memory Maneuver
  
 <https://adventofcode.com/2018/day/8>
 
-Relatively simple recursive function. I had some trouble figuring out how to detemine the lenght of each child node, in
+Relatively simple recursive function. I had some trouble figuring out how to determine the length of each child node, in
 order to parse den one at a time. Finally figured to pass a `Iterator` over the input integers, and then no problem.
 
 Kotlin have some really convenient functions like `List.getOrNull`, `List.sum` and `List.sumBy`. These makes it easy
@@ -145,3 +145,20 @@ Possible improvements:
   position and their velocity. 
 * Function `findSmallestSky` is not too pretty; could probably be refactored up.
 
+
+Day 11: Chronal Charge
+----------------------
+
+<https://adventofcode.com/2018/day/11>
+
+Fairly simple part 1, but like Day 9, part 2 exposes the short comings of the naive solutions.
+
+The way to go is reuse the already calculated smaller squares. Like a 10x10 square consist of five 5x5 squares, for 
+which we already know the total power. I took the simpler optimization to find the sum by the smaller (n-1)x(n-1) square
+and the add the left over 1x1 squares along the to left over edges. 
+
+I did not actually solve it completely, as time is still too big a factor. My hack was to limited the maximum square 
+size to 20 in the part 2 case (and 3 in part 1). This was enough to find the correct solution. :-/
+
+Improvement:
+* Fix the divide-and-conquer algorithm to be able to calculate total power for all 300 square sizes.

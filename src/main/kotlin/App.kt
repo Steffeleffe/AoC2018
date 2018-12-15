@@ -18,6 +18,13 @@ fun main(args: Array<String>) {
     println("Part1:")
     Day10().part1Answer().forEach { println(it) }
     println("Part2: ${Day10().part2Answer()}")
+    println()
+
+    println("Day11")
+    println("Part1: ${Day11().part1Answer(8141)}")
+    println("Part2: ${Day11().part2Answer(8141)}")
+    println()
+
 
 }
 
