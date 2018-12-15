@@ -163,3 +163,14 @@ size to 20 in the part 2 case (and 3 in part 1). This was enough to find the cor
 Improvement:
 * Fix the divide-and-conquer algorithm to be able to calculate total power for all 300 square sizes. See "Summed-area
 table" <https://en.wikipedia.org/wiki/Summed-area_table>.
+
+
+Day 12: Subterranean Sustainability
+-----------------------------------
+
+<https://adventofcode.com/2018/day/12>
+
+Once again simple part 1, but part 2 requires some alternative approach. With hint that at some point, the sum changes
+a fixed number for each new generation, it has easy to find when difference stabilizes and then extrapolate the result.
+
+A bit ugly code especially in the `PotsHandler` class. Will probably leave as is.

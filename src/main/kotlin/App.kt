@@ -25,6 +25,11 @@ fun main(args: Array<String>) {
     println("Part2: ${Day11().part2Answer(8141)}")
     println()
 
+    println("Day12")
+    println("Part1: ${Day12().part1Answer()}")
+    println("Part2: ${Day12().part2Answer()}")
+    println()
+
 
 }
 
