@@ -174,3 +174,17 @@ Once again simple part 1, but part 2 requires some alternative approach. With hi
 a fixed number for each new generation, it has easy to find when difference stabilizes and then extrapolate the result.
 
 A bit ugly code especially in the `PotsHandler` class. Will probably leave as is.
+
+
+Day 13: Mine Cart Madness
+-------------------------
+
+<https://adventofcode.com/2018/day/13>
+
+Pretty easy, and part2 was an easy extension for the stuff made for part 1.
+
+Lots of `when` constructs used :).
+
+Not much more to add, except that TDD part sort of went out the window. Perhaps because the parsing of the input was the
+most complex and most prone to coding errors.
+
