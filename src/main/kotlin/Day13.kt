@@ -64,14 +64,14 @@ class Day13 {
 
         private fun changeDirectionOnCurve(type: TrackSection.TrackType, cart: Cart) {
             when (true) {
-                cart.getCurrentDirection() == Cart.CartDirection.UP && type == TrackSection.TrackType.CURVE_FORWARD_SLASH -> cart.turnRight()
-                cart.getCurrentDirection() == Cart.CartDirection.DOWN && type == TrackSection.TrackType.CURVE_FORWARD_SLASH -> cart.turnRight()
-                cart.getCurrentDirection() == Cart.CartDirection.LEFT && type == TrackSection.TrackType.CURVE_FORWARD_SLASH -> cart.turnLeft()
-                cart.getCurrentDirection() == Cart.CartDirection.RIGHT && type == TrackSection.TrackType.CURVE_FORWARD_SLASH -> cart.turnLeft()
-                cart.getCurrentDirection() == Cart.CartDirection.UP && type == TrackSection.TrackType.CURVE_BACKWARD_SLASH -> cart.turnLeft()
-                cart.getCurrentDirection() == Cart.CartDirection.DOWN && type == TrackSection.TrackType.CURVE_BACKWARD_SLASH -> cart.turnLeft()
-                cart.getCurrentDirection() == Cart.CartDirection.LEFT && type == TrackSection.TrackType.CURVE_BACKWARD_SLASH -> cart.turnRight()
-                cart.getCurrentDirection() == Cart.CartDirection.RIGHT && type == TrackSection.TrackType.CURVE_BACKWARD_SLASH -> cart.turnRight()
+                cart.getCurrentDirection() == Cart.CartDirection.NORTH && type == TrackSection.TrackType.CURVE_FORWARD_SLASH -> cart.turnRight()
+                cart.getCurrentDirection() == Cart.CartDirection.SOUTH && type == TrackSection.TrackType.CURVE_FORWARD_SLASH -> cart.turnRight()
+                cart.getCurrentDirection() == Cart.CartDirection.WEST && type == TrackSection.TrackType.CURVE_FORWARD_SLASH -> cart.turnLeft()
+                cart.getCurrentDirection() == Cart.CartDirection.EAST && type == TrackSection.TrackType.CURVE_FORWARD_SLASH -> cart.turnLeft()
+                cart.getCurrentDirection() == Cart.CartDirection.NORTH && type == TrackSection.TrackType.CURVE_BACKWARD_SLASH -> cart.turnLeft()
+                cart.getCurrentDirection() == Cart.CartDirection.SOUTH && type == TrackSection.TrackType.CURVE_BACKWARD_SLASH -> cart.turnLeft()
+                cart.getCurrentDirection() == Cart.CartDirection.WEST && type == TrackSection.TrackType.CURVE_BACKWARD_SLASH -> cart.turnRight()
+                cart.getCurrentDirection() == Cart.CartDirection.EAST && type == TrackSection.TrackType.CURVE_BACKWARD_SLASH -> cart.turnRight()
                 else -> throw IllegalArgumentException()
             }
         }
@@ -101,33 +101,33 @@ class Day13 {
 
         fun moveInCurrentDirection() {
             when (direction) {
-                CartDirection.UP -> coordinate.y--
-                CartDirection.DOWN -> coordinate.y++
-                CartDirection.LEFT -> coordinate.x--
-                CartDirection.RIGHT -> coordinate.x++
+                CartDirection.NORTH -> coordinate.y--
+                CartDirection.SOUTH -> coordinate.y++
+                CartDirection.WEST -> coordinate.x--
+                CartDirection.EAST -> coordinate.x++
             }
         }
 
         fun turnRight() {
             direction = when (direction) {
-                CartDirection.UP -> CartDirection.RIGHT
-                CartDirection.DOWN -> CartDirection.LEFT
-                CartDirection.LEFT -> CartDirection.UP
-                CartDirection.RIGHT -> CartDirection.DOWN
+                CartDirection.NORTH -> CartDirection.EAST
+                CartDirection.SOUTH -> CartDirection.WEST
+                CartDirection.WEST -> CartDirection.NORTH
+                CartDirection.EAST -> CartDirection.SOUTH
             }
         }
 
         fun turnLeft() {
             direction = when (direction) {
-                CartDirection.UP -> CartDirection.LEFT
-                CartDirection.DOWN -> CartDirection.RIGHT
-                CartDirection.LEFT -> CartDirection.DOWN
-                CartDirection.RIGHT -> CartDirection.UP
+                CartDirection.NORTH -> CartDirection.WEST
+                CartDirection.SOUTH -> CartDirection.EAST
+                CartDirection.WEST -> CartDirection.SOUTH
+                CartDirection.EAST -> CartDirection.NORTH
             }
         }
 
         enum class CartDirection {
-            UP, DOWN, LEFT, RIGHT
+            NORTH, SOUTH, WEST, EAST
         }
     }
 
@@ -155,10 +155,10 @@ class Day13 {
         private fun isCartSymbol(it: Char) = it == '<' || it == '>' || it == '^' || it == 'v'
 
         private fun cartDirectionFromChar(type: Char) = when (type) {
-            '^' -> Cart.CartDirection.UP
-            'v' -> Cart.CartDirection.DOWN
-            '<' -> Cart.CartDirection.LEFT
-            '>' -> Cart.CartDirection.RIGHT
+            '^' -> Cart.CartDirection.NORTH
+            'v' -> Cart.CartDirection.SOUTH
+            '<' -> Cart.CartDirection.WEST
+            '>' -> Cart.CartDirection.EAST
             else -> throw IllegalArgumentException()
         }
 
